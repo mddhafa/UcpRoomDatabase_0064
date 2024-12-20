@@ -3,6 +3,17 @@ package com.example.ucp_2.ui.viewmodel
 import com.example.ucp_2.data.entity.Barang
 
 
+data class FormErrorState(
+    val id_brg: String? = null,
+    val nama_brg: String? = null,
+    val deskripsi: String? = null,
+    val harga: String? = null,
+    val stok: String? = null,
+    val namaSuplier: String? = null
+){
+
+}
+
 fun BarangEvent.toBarangEntity(): Barang = Barang(
     id_brg = id_brg,
     nama_brg = nama_brg,
