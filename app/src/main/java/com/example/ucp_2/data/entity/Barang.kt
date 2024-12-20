@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey
 @Entity
 data class Barang(
     @PrimaryKey
-    val id: String,
-    val nama: String,
+    val id_brg: String,
+    val nama_brg: String,
     val deskripsi: String,
     val harga: String,
     val stok: String,
