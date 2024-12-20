@@ -6,6 +6,8 @@ import com.example.ucp_2.repository.RepositoryBrg
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
 
 
 class BarangViewModel (
@@ -32,6 +34,31 @@ class BarangViewModel (
         )
         uiState = uiState.copy(isEntryValid = errorState)
         return errorState.isValid()
+    }
+
+    fun saveData(){
+        val currentEvent = uiState.barangEvent
+
+        if(validateFields()){
+            viewModelScope.launch {
+                try {
+                    repositoryBrg.insertBrg(currentEvent.toBarangEntity())
+                    uiState = uiState.copy(
+                        snackBarMessage = "Data berhasil diisi",
+                        barangEvent = BarangEvent(),
+                        isEntryValid = FormErrorState()
+                    )
+                }catch (e: Exception){
+                    uiState = uiState.copy(
+                        snackBarMessage = "Data gagal disimpan"
+                    )
+                }
+            }
+        }else{
+            uiState = uiState.copy(
+                snackBarMessage = "Input tidak valid, Periksa ulang data kamu"
+            )
+        }
     }
 
 }
