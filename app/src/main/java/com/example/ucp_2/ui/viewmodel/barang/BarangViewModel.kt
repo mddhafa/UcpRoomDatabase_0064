@@ -60,6 +60,9 @@ class BarangViewModel (
             )
         }
     }
+    fun resetSnackBarMessage(){
+        uiState = uiState.copy(snackBarMessage = null)
+    }
 
 }
 
