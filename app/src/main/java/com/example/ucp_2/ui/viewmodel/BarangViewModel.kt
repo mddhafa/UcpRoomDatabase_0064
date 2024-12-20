@@ -11,6 +11,10 @@ data class FormErrorState(
     val stok: String? = null,
     val namaSuplier: String? = null
 ){
+    fun isValid(): Boolean{
+        return id_brg == null && nama_brg == null && deskripsi == null &&
+                harga == null && stok == null && namaSuplier == null
+    }
 
 }
 
