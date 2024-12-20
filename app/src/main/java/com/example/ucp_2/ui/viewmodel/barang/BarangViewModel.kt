@@ -4,8 +4,27 @@ import androidx.lifecycle.ViewModel
 import com.example.ucp_2.data.entity.Barang
 import com.example.ucp_2.repository.RepositoryBrg
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 
 
+class BarangViewModel (
+    private val repositoryBrg: RepositoryBrg
+): ViewModel (){
+
+    var uiState by mutableStateOf(BrgUiState())
+
+    fun updateState(barangEvent: BarangEvent){
+        uiState = uiState.copy(
+            barangEvent = barangEvent,
+        )
+    }
+
+    private fun validateFields(): Boolean{
+
+    }
+
+}
 
 data class BrgUiState(
     val barangEvent: BarangEvent = BarangEvent(),
