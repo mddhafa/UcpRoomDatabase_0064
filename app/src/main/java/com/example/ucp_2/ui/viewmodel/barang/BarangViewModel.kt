@@ -1,8 +1,17 @@
-package com.example.ucp_2.ui.viewmodel
+package com.example.ucp_2.ui.viewmodel.barang
 
+import androidx.lifecycle.ViewModel
 import com.example.ucp_2.data.entity.Barang
+import com.example.ucp_2.repository.RepositoryBrg
+import androidx.compose.runtime.mutableStateOf
 
 
+
+data class BrgUiState(
+    val barangEvent: BarangEvent = BarangEvent(),
+    val isEntryValid: FormErrorState = FormErrorState(),
+    val snackBarMessage: String? = null
+)
 data class FormErrorState(
     val id_brg: String? = null,
     val nama_brg: String? = null,
@@ -28,10 +37,10 @@ fun BarangEvent.toBarangEntity(): Barang = Barang(
 )
 
 data class BarangEvent(
-    val id_brg: String,
-    val nama_brg: String,
-    val deskripsi: String,
-    val harga: String,
-    val stok: String,
-    val namaSuplier: String,
-    )
+    val id_brg: String ="",
+    val nama_brg: String ="",
+    val deskripsi: String="",
+    val harga: String ="",
+    val stok: String ="",
+    val namaSuplier: String ="",
+)
