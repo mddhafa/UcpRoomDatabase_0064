@@ -33,7 +33,6 @@ class UpdateBrgViewModel(
                 .toUiStateBrg()
         }
     }
-
 }
 
     fun Barang.toUiStateBrg() : BrgUiState = BrgUiState(
