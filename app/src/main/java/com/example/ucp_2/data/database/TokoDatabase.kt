@@ -9,7 +9,7 @@ import com.example.ucp_2.data.dao.SuplierDao
 import com.example.ucp_2.data.entity.Barang
 import com.example.ucp_2.data.entity.Suplier
 
-@Database (entities = [Barang::class], [Suplier ::class], version = 1, exportSchema = false)
+@Database (entities = [Barang::class, Suplier ::class], version = 1, exportSchema = false)
 abstract class TokoDatabase : RoomDatabase() {
 
     abstract fun BarangDao() : BarangDao

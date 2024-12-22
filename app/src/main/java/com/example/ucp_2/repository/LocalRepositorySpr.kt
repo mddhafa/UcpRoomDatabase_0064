@@ -16,8 +16,8 @@ class LocalRepositorySpr (
         return suplierDao.getAllSuplier()
     }
 
-    override fun getSpr (id: String) : Flow<Suplier> {
-        return suplierDao.getSuplier(id)
+    override fun getSpr (idSpr: String) : Flow<Suplier> {
+        return suplierDao.getSuplier(idSpr)
     }
 
     override suspend fun deleteSpr (suplier: Suplier){
