@@ -13,6 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.ucp_2.ui.viewmodel.suplier.BarangEvent
 
 class UpdateBrgViewModel(
     savedStateHandle: SavedStateHandle,
@@ -33,6 +34,15 @@ class UpdateBrgViewModel(
                 .toUiStateBrg()
         }
     }
+
+    fun updateState(barangEvent: BarangEvent){
+        updateUiState = updateUiState.copy(
+            barangEvent = barangEvent,
+        )
+    }
+
+
+
 }
 
     fun Barang.toUiStateBrg() : BrgUiState = BrgUiState(
