@@ -9,6 +9,12 @@ import com.example.ucp_2.data.entity.Suplier
 import com.example.ucp_2.repository.RepositorySpr
 import kotlinx.coroutines.launch
 
+fun SuplierEvent.toSuplierEntity() : Suplier = Suplier(
+    idSpr = idSpr,
+    namaSpr = namaSpr,
+    kontak = kontak,
+    alamat = alamat
+)
 
 data class SuplierEvent(
     val idSpr : String = " ",
