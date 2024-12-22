@@ -14,6 +14,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp_2.ui.viewmodel.suplier.BarangEvent
+import com.example.ucp_2.ui.viewmodel.suplier.FormErrorBrgState
 
 class UpdateBrgViewModel(
     savedStateHandle: SavedStateHandle,
@@ -41,6 +42,20 @@ class UpdateBrgViewModel(
         )
     }
 
+    private fun validateFields(): Boolean {
+        val event = updateUiState.barangEvent
+        val errorState = FormErrorBrgState(
+            idBrg = if (event.idBrg.isNotEmpty()) null else "Id Barang tidak boleh kosong",
+            namaBrg = if (event.namaBrg.isNotEmpty()) null else "Nama Barang tidak boleh kosong",
+            deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
+            harga = if (event.harga.isNotEmpty()) null else "Harga tidak boleh kosong",
+            stok = if (event.stok >= 0) null else "Stok tidak boleh kosong",
+            namaSuplier = if (event.namaSuplier.isNotEmpty()) null else "Nama Suplier tidak boleh kosong"
+        )
+
+        updateUiState = updateUiState.copy(isEntryValid = errorState)
+        return errorState.isBrgValid()
+    }
 
 
 }
