@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -35,13 +36,14 @@ import com.example.ucp_2.R
 @Preview(showBackground = true)
 @Composable
 fun NavbarPreview() {
-    Navbar(namaUser = "John Doe", onBack = {})
+    Navbar(namaUser = "John Doe", onBack = {}, showBackButton = true)
 
 }
 @Composable
 fun Navbar(
     namaUser:String,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    showBackButton: Boolean = true
 
 ){
     Box(Modifier.fillMaxWidth().size(150.dp)
@@ -64,17 +66,19 @@ fun Navbar(
                     color = Color.White,
                     fontStyle = FontStyle.Italic,
                     fontSize = 15.sp)
-                IconButton(
-                    onClick = onBack,
-                ) {
-                    Icon(
-                        imageVector = Icons.Filled.ArrowBack,
-                        contentDescription = "Kembali",
-                        tint = Color.White
-                    )
-                }
-                Spacer(modifier = Modifier.weight(2f))
+                    if (showBackButton) {
+                            IconButton(
+                                onClick = onBack,
+                            ) {
+                                Icon(
+                                    imageVector = Icons.Filled.ArrowBack,
+                                    contentDescription = "Kembali",
+                                    tint = Color.White
+                                )
 
+                            }
+                    }
+                Spacer(modifier = Modifier.weight(2f))
             }
             Spacer(modifier = Modifier.weight(1f))
             Box(modifier = Modifier.size(100.dp).padding(end = 10.dp)){
