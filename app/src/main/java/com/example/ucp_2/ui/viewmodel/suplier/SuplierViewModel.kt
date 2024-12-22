@@ -9,6 +9,58 @@ import com.example.ucp_2.data.entity.Suplier
 import com.example.ucp_2.repository.RepositorySpr
 import kotlinx.coroutines.launch
 
+class SuplierViewModel (
+    private val repositorySpr: RepositorySpr
+) : ViewModel (){
+
+    var uiSprState by mutableStateOf(SprUiState())
+
+    fun updateSprState(suplierEvent: SuplierEvent){
+        uiSprState = uiSprState.copy(
+            suplierEvent = suplierEvent,
+        )
+    }
+
+    private fun validateFields(): Boolean{
+        val event = uiSprState.suplierEvent
+        val errorState = FormErrorSprState(
+            idSpr = if (event.idSpr.isNotEmpty()) null else "Id Suplier tidak boleh kosong",
+            namaSpr = if (event.namaSpr.isNotEmpty()) null else "Nama Suplier tidak boleh kosong",
+            kontak = if (event.kontak.isNotEmpty()) null else "Kontak tidak boleh kosong",
+            alamat = if (event.alamat.isNotEmpty()) null else "Alamat tidak boleh kosong",
+        )
+        uiSprState = uiSprState.copy(isEntryValid = errorState)
+        return errorState.isSprValid()
+    }
+    fun saveData() {
+        val currentEvent = uiSprState.suplierEvent
+
+        if (validateFields()) {
+            viewModelScope.launch {
+                try {
+                    repositorySpr.insertSpr(currentEvent.toSuplierEntity())
+                    uiSprState = uiSprState.copy(
+                        snackBarMessage = "Data berhasil disimpan",
+                        suplierEvent = SuplierEvent(),
+                        isEntryValid = FormErrorSprState()
+                    )
+                } catch (e: Exception) {
+                    uiSprState = uiSprState.copy(
+                        snackBarMessage = "Data gagal disimpan"
+                    )
+                }
+            }
+        } else {
+            uiSprState = uiSprState.copy(
+                snackBarMessage = "Input tidak valid. Periksa kembali data anda."
+            )
+        }
+    }
+    //Reset pesan Snackbar setelah ditampilkan
+    fun resetSnackBarMessage(){
+        uiSprState = uiSprState.copy(snackBarMessage = null)
+    }
+}
 
 data class SprUiState(
     val suplierEvent: SuplierEvent = SuplierEvent(),
