@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp_2.ui.viewmodel.suplier.BarangEvent
 import com.example.ucp_2.ui.viewmodel.suplier.FormErrorBrgState
+import com.example.ucp_2.ui.viewmodel.suplier.toBarangEntity
 
 class UpdateBrgViewModel(
     savedStateHandle: SavedStateHandle,
@@ -57,7 +58,35 @@ class UpdateBrgViewModel(
         return errorState.isBrgValid()
     }
 
+    fun updateData() {
+        val currentEvent = updateUiState.barangEvent
 
+        if (validateFields()) {
+            viewModelScope.launch {
+                try {
+                    repositoryBrg.updateBrg(currentEvent.toBarangEntity())
+                    updateUiState = updateUiState.copy(
+                        snackBarMessage = "Data berhasil diupdate",
+                        barangEvent = BarangEvent(),
+                        isEntryValid = FormErrorBrgState()
+                    )
+                    println("SnackBarMessageDiatur: ${updateUiState.snackBarMessage}")
+                } catch (e:Exception) {
+                    updateUiState = updateUiState.copy(
+                        snackBarMessage = "Data Gagal Diupdate"
+                    )
+                }
+            }
+        } else {
+            updateUiState = updateUiState.copy(
+                snackBarMessage = "Data Gagal diupdate"
+            )
+        }
+    }
+
+    fun resetSnackBarMessage() {
+        updateUiState = updateUiState.copy(snackBarMessage = null)
+    }
 }
 
     fun Barang.toUiStateBrg() : BrgUiState = BrgUiState(
