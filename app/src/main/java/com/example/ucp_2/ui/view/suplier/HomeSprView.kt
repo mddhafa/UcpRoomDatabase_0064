@@ -11,6 +11,10 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.material3.CardDefaults
+import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Divider
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -140,61 +144,98 @@ fun ListSupier(
 @Composable
 fun CardSpr(
     spr: Suplier,
-    modifier : Modifier = Modifier,
-){
-    Card (
+    modifier: Modifier = Modifier,
+) {
+    Spacer(modifier = Modifier.height(10.dp))
+    Card(
         modifier = modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(8.dp),
+        elevation = CardDefaults.elevatedCardElevation(4.dp)
     ) {
-        Column (
-            modifier = Modifier.padding(8.dp)
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
         ) {
-            Row (
+            // ID Supplier
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(imageVector = Icons.Filled.PlayArrow, contentDescription = "")
-                Spacer(modifier = modifier.padding(4.dp))
+                Icon(
+                    imageVector = Icons.Filled.PlayArrow,
+                    contentDescription = "ID Icon",
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
-                        text = "ID: ${spr.idSpr}",
-                fontSize = 16.sp,
-                color = MaterialTheme.colorScheme.onSurface
+                    text = "ID: ${spr.idSpr}",
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
-            Row (
+
+            Spacer(modifier = Modifier.height(8.dp))
+            Divider()
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Nama Supplier
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(imageVector = Icons.Filled.Person, contentDescription = "")
-                Spacer(modifier = modifier.padding(4.dp))
+                Icon(
+                    imageVector = Icons.Filled.Person,
+                    contentDescription = "Nama Icon",
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = spr.namaSpr,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
-            Row (
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Kontak Supplier
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Icon(imageVector = Icons.Filled.Call, contentDescription = "")
-                Spacer(modifier = modifier.padding(4.dp))
+                Icon(
+                    imageVector = Icons.Filled.Call,
+                    contentDescription = "Kontak Icon",
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = spr.kontak,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 16.sp
+                    fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
-            Row (
+
+            Spacer(modifier = Modifier.height(8.dp))
+
+            // Alamat Supplier
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.Top
             ) {
-                Icon(imageVector = Icons.Filled.LocationOn, contentDescription = "")
-                Spacer(modifier = modifier.padding(4.dp))
+                Icon(
+                    imageVector = Icons.Filled.LocationOn,
+                    contentDescription = "Alamat Icon",
+                    tint = MaterialTheme.colorScheme.primary
+                )
+                Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = spr.alamat,
-                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }
