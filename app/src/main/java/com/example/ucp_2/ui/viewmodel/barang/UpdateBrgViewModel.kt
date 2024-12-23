@@ -25,7 +25,7 @@ class UpdateBrgViewModel(
     var updateUiState by mutableStateOf(BrgUiState())
         private set
 
-    private val _idBrg: String =
+    private val _idBrg: Int =
         checkNotNull(savedStateHandle[AlamatNavigasi.DestinasiUpdate.idBrg])
 
     init {
@@ -43,10 +43,10 @@ class UpdateBrgViewModel(
         )
     }
 
-    private fun validateFields(): Boolean {
+    fun validateFields(): Boolean {
         val event = updateUiState.barangEvent
         val errorState = FormErrorBrgState(
-            idBrg = if (event.idBrg.isNotEmpty()) null else "Id Barang tidak boleh kosong",
+            idBrg = if (event.idBrg >= 0) null else "Id Barang tidak boleh kosong",
             namaBrg = if (event.namaBrg.isNotEmpty()) null else "Nama Barang tidak boleh kosong",
             deskripsi = if (event.deskripsi.isNotEmpty()) null else "Deskripsi tidak boleh kosong",
             harga = if (event.harga.isNotEmpty()) null else "Harga tidak boleh kosong",
