@@ -31,6 +31,53 @@ import com.example.ucp_2.R
 import com.example.ucp_2.ui.customwidget.Navbar
 
 @Composable
+fun GridMenu(
+    onAddBrg: () -> Unit = {},
+    onAddSpr: () -> Unit = {},
+    onListBrg: (String) -> Unit = {},
+    onListSpr: (String) -> Unit = {}
+) {
+    Column(
+        verticalArrangement = Arrangement.spacedBy(24.dp)
+    ) {
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            MenuCard(
+                title = "Barang List",
+                icon = android.R.drawable.ic_menu_view,
+                onClick = { onListBrg("Barang List") },
+                modifier = Modifier.weight(1f)
+            )
+            MenuCard(
+                title = "Add Barang",
+                icon = android.R.drawable.ic_menu_add,
+                onClick = onAddBrg,
+                modifier = Modifier.weight(1f)
+            )
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            MenuCard(
+                title = "Supplier List",
+                icon = android.R.drawable.ic_menu_agenda,
+                onClick = { onListSpr("Supplier List") },
+                modifier = Modifier.weight(1f)
+            )
+            MenuCard(
+                title = "Add Supplier",
+                icon = android.R.drawable.ic_menu_add,
+                onClick = onAddSpr,
+                modifier = Modifier.weight(1f)
+            )
+        }
+    }
+}
+
+@Composable
 fun MenuCard(
     title: String,
     icon: Int,
