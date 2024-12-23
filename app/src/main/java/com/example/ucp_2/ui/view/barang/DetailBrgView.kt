@@ -40,6 +40,50 @@ import com.example.ucp_2.ui.viewmodel.barang.DetailBrgUiState
 import com.example.ucp_2.ui.viewmodel.barang.DetailBrgViewModel
 import com.example.ucp_2.ui.viewmodel.suplier.toBarangEntity
 
+@Composable
+fun DetailBrgView(
+    viewModel: DetailBrgViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onBack: () -> Unit,
+    onEditClick: (Int) -> Unit = { },
+    onDeleteClick: () -> Unit = { }
+) {
+    Scaffold(
+        topBar = {
+            InputDataTopAppBar(
+                title = "Input Data",
+                namaUser = " ",
+                onBack = onBack,
+                showBackButton = true
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = {
+                    onEditClick(viewModel.detailUiState.value.detailUiEvent.idBrg)
+                },
+                shape = MaterialTheme.shapes.medium,
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Icon(
+                    imageVector = Icons.Default.Edit,
+                    contentDescription = "Edit Data",
+                    tint = MaterialTheme.colorScheme.onPrimary
+                )
+            }
+        }
+    ) { innerPadding ->
+        val detailUiState by viewModel.detailUiState.collectAsState()
+
+        BodyDetailBrg(
+            modifier = Modifier.padding(innerPadding),
+            detailBrgUiState = detailUiState,
+            onDeleteClick = {
+                viewModel.deleteBrg()
+                onDeleteClick()
+            }
+        )
+    }
+}
 
 @Composable
 fun BodyDetailBrg(
