@@ -46,6 +46,26 @@ import com.example.ucp_2.ui.viewmodel.suplier.HomeSprUiState
 import com.example.ucp_2.ui.viewmodel.suplier.HomeSprViewModel
 import kotlinx.coroutines.launch
 
+
+@Composable
+fun ListSupier(
+    listSpr: List<Suplier>,
+    modifier: Modifier = Modifier,
+){
+    LazyColumn (
+        modifier = modifier
+    ){
+        items(
+            items = listSpr,
+            itemContent = { spr->
+                CardSpr (
+                    spr= spr,
+                )
+            }
+        )
+    }
+}
+
 @Composable
 fun CardSpr(
     spr: Suplier,
