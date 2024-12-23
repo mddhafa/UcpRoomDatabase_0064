@@ -3,7 +3,6 @@ package com.example.ucp_2.ui.view
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -27,9 +26,64 @@ import androidx.compose.ui.Modifier
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.ucp_2.R
 import com.example.ucp_2.ui.customwidget.Navbar
 
+@Composable
+fun HomeTokoView(
+    onAddBrg: () -> Unit = {},
+    onAddSpr: () -> Unit = {},
+    onListBrg: (String) -> Unit = {},
+    onListSpr: (String) -> Unit = {}
+) {
+    Scaffold(
+        topBar = {
+            Navbar(
+                namaUser = "Muh Dhafa",
+                onBack = {
+                    println("Kembali ditekan")
+                },
+                showBackButton = false
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .padding(innerPadding)
+                .fillMaxSize()
+                .padding(16.dp)
+                .padding(top = 50.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "Selamat Datang di Toko Kami",
+                    fontSize = 24.sp,
+                    fontWeight = FontWeight.Bold,
+                    color = Color(0xFF1976D2),
+                    modifier = Modifier.padding(bottom = 8.dp)
+                )
+                Text(
+                    text = "Kelola Barang dan Supplier Anda dengan mudah.",
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Normal,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.height(40.dp))
+            }
+
+            // Grid menu
+            GridMenu(
+                onAddBrg = onAddBrg,
+                onAddSpr = onAddSpr,
+                onListBrg = onListBrg,
+                onListSpr = onListSpr
+            )
+        }
+    }
+}
 @Composable
 fun GridMenu(
     onAddBrg: () -> Unit = {},
