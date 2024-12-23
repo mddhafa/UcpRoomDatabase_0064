@@ -42,6 +42,70 @@ import com.example.ucp_2.ui.viewmodel.suplier.toBarangEntity
 
 
 @Composable
+fun BodyDetailBrg(
+    modifier: Modifier = Modifier,
+    detailBrgUiState: DetailBrgUiState,
+    onDeleteClick: () -> Unit = { }
+) {
+    var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
+
+    when {
+        detailBrgUiState.isLoading -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator(color = MaterialTheme.colorScheme.primary)
+            }
+        }
+
+        detailBrgUiState.isUiEventNotEmpty -> {
+            Column(
+                modifier = modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
+            ) {
+                ItemDetailBrg(
+                    barang = detailBrgUiState.detailUiEvent.toBarangEntity(),
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.height(16.dp))
+                Button(
+                    onClick = { deleteConfirmationRequired = true },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("Delete")
+                }
+
+                if (deleteConfirmationRequired) {
+                    DeleteConfirmationDialog(
+                        onDeleteConfirm = {
+                            deleteConfirmationRequired = false
+                            onDeleteClick()
+                        },
+                        onDeleteCancel = { deleteConfirmationRequired = false },
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+            }
+        }
+
+        detailBrgUiState.isUiEventEmpty -> {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Data tidak ditemukan",
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.error
+                )
+            }
+        }
+    }
+}
+
+@Composable
 fun ItemDetailBrg(
     modifier: Modifier = Modifier,
     barang: Barang
