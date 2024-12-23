@@ -31,6 +31,58 @@ import com.example.ucp_2.ui.viewmodel.suplier.SuplierViewModel
 import kotlinx.coroutines.launch
 
 @Composable
+fun InsertSprView(
+    onBack: () -> Unit,
+    onNavigate: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: SuplierViewModel = viewModel(factory = PenyediaViewModel.Factory)
+){
+    val uiSprState = viewModel.uiSprState
+    val snackbarHostState = remember { SnackbarHostState() }
+    val coroutineScope = rememberCoroutineScope()
+
+    LaunchedEffect (uiSprState.snackBarMessage){
+        uiSprState.snackBarMessage?.let { message ->
+            coroutineScope.launch {
+                snackbarHostState.showSnackbar(message)
+                viewModel.resetSnackBarMessage()
+            }
+        }
+    }
+    Scaffold (
+        snackbarHost = { SnackbarHost(hostState = snackbarHostState)}
+    ){ padding ->
+        Column (
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding)
+        ){
+            InputDataTopAppBar(
+                title = "Input Data",
+                namaUser = " ",
+                onBack = onBack,
+                showBackButton = true
+            )
+
+            InsertBodySpr(
+                uiSprState = uiSprState,
+                onValueChange = { updateSprEvent ->
+                    viewModel.updateSprState(updateSprEvent)
+                },
+                onClick = {
+                    coroutineScope.launch {
+                        viewModel.saveData()
+                    }
+                    onNavigate()
+                }
+            )
+
+        }
+
+    }
+}
+
+@Composable
 fun InsertBodySpr(
     modifier: Modifier = Modifier,
     onValueChange: (SuplierEvent) -> Unit = { },
