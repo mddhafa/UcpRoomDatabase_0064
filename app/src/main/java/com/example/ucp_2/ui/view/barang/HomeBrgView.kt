@@ -45,6 +45,31 @@ import com.example.ucp_2.ui.viewmodel.barang.HomeBrgViewModel
 import kotlinx.coroutines.launch
 
 @Composable
+fun HomeBrgView(
+    viewModel: HomeBrgViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onBack: () -> Unit = {},
+    onDetailClick: (Int) -> Unit = {}
+) {
+    Scaffold(
+        topBar = {
+            Navbar(
+                namaUser = "List Barang",
+                onBack = onBack,
+                showBackButton = true
+            )
+        }
+    ) { innerPadding ->
+        val homeBrgUiState = viewModel.homebrgUiState.collectAsStateWithLifecycle().value
+
+        BodyListBrgView(
+            homeBrgUiState = homeBrgUiState,
+            onDetailClick = onDetailClick,
+            modifier = Modifier.padding(innerPadding)
+        )
+    }
+}
+
+@Composable
 fun BodyListBrgView(
     homeBrgUiState: HomeBrgUiState,
     onDetailClick: (Int) -> Unit,
