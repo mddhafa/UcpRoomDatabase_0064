@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.ucp_2.R
 import com.example.ucp_2.ui.customwidget.Navbar
 
 @Composable
@@ -100,13 +101,18 @@ fun GridMenu(
         ) {
             MenuCard(
                 title = "Barang List",
-                icon = android.R.drawable.ic_menu_view,
+                iconRes = R.drawable.listt,
                 onClick = { onListBrg("Barang List") },
                 modifier = Modifier.weight(1f)
             )
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
             MenuCard(
                 title = "Add Barang",
-                icon = android.R.drawable.ic_menu_add,
+                iconRes = R.drawable.add,
                 onClick = onAddBrg,
                 modifier = Modifier.weight(1f)
             )
@@ -117,13 +123,18 @@ fun GridMenu(
         ) {
             MenuCard(
                 title = "Supplier List",
-                icon = android.R.drawable.ic_menu_agenda,
+                iconRes = R.drawable.listt,
                 onClick = { onListSpr("Supplier List") },
                 modifier = Modifier.weight(1f)
             )
+        }
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            modifier = Modifier.fillMaxWidth()
+        ) {
             MenuCard(
                 title = "Add Supplier",
-                icon = android.R.drawable.ic_menu_add,
+                iconRes = R.drawable.add,
                 onClick = onAddSpr,
                 modifier = Modifier.weight(1f)
             )
@@ -134,7 +145,7 @@ fun GridMenu(
 @Composable
 fun MenuCard(
     title: String,
-    icon: Int,
+    iconRes: Int,
     onClick: () -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -157,7 +168,7 @@ fun MenuCard(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Icon(
-                painter = painterResource(id = icon),
+                painter = painterResource(id = iconRes),
                 contentDescription = title,
                 modifier = Modifier.size(32.dp),
                 tint = Color.White
