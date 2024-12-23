@@ -31,7 +31,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.layout.height
-import androidx.compose.ui.unit.sp
+import androidx.compose.material3.ButtonDefaults
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp_2.data.entity.Barang
 import com.example.ucp_2.ui.customwidget.InputDataTopAppBar
@@ -62,12 +62,14 @@ fun DetailBrgView(
                     onEditClick(viewModel.detailUiState.value.detailUiEvent.idBrg)
                 },
                 shape = MaterialTheme.shapes.medium,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
+                containerColor = Color(0xFF00BFFF)
             ) {
                 Icon(
                     imageVector = Icons.Default.Edit,
                     contentDescription = "Edit Data",
-                    tint = MaterialTheme.colorScheme.onPrimary
+                    tint = MaterialTheme.colorScheme.onPrimary,
+
                 )
             }
         }
@@ -116,7 +118,11 @@ fun BodyDetailBrg(
                 Spacer(modifier = Modifier.height(16.dp))
                 Button(
                     onClick = { deleteConfirmationRequired = true },
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier.fillMaxWidth(),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = Color(0xFF781C1C),
+                        contentColor = Color.White
+                    )
                 ) {
                     Text("Delete")
                 }
@@ -157,9 +163,8 @@ fun ItemDetailBrg(
     Card(
         modifier = modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
-        ),
+            containerColor = Color(0xFFE3F2FD),
+            contentColor = MaterialTheme.colorScheme.onSurface        ),
         elevation = CardDefaults.elevatedCardElevation(8.dp)
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
