@@ -20,11 +20,6 @@ interface SuplierDao {
     fun getAllSuplier(): Flow<List<Suplier>>
 
     @Query("SELECT * FROM suplier WHERE idSpr = :id")
-    fun getSuplier(id: String): Flow<Suplier>
+    fun getSuplier(id: Int): Flow<Suplier>
 
-    @Delete
-    suspend fun deleteSuplier(suplier: Suplier)
-
-    @Update
-    suspend fun updateSuplier(suplier: Suplier)
 }

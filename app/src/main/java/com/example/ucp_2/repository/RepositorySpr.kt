@@ -8,9 +8,7 @@ interface RepositorySpr {
 
     fun getAllSpr () : Flow<List<Suplier>>
 
-    fun getSpr (idSpr: String) : Flow<Suplier>
+    fun getSpr (idSpr: Int) : Flow<Suplier>
 
-    suspend fun deleteSpr(suplier: Suplier)
 
-    suspend fun updateSpr (suplier: Suplier)
 }
