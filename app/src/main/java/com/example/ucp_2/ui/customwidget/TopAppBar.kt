@@ -39,7 +39,7 @@ fun Navbar(
         modifier = Modifier
             .fillMaxWidth()
             .wrapContentHeight()
-            .clip(RoundedCornerShape(bottomEnd = 80.dp))
+            .clip(RoundedCornerShape(bottomEnd = 40.dp, bottomStart = 40.dp))
             .background(color = Color(0xFF00BFFF))
     ) {
         Row(
@@ -83,15 +83,14 @@ fun Navbar(
                 modifier = Modifier
                     .size(90.dp)
                     .clip(CircleShape)
-                    .background(Color.White)
                     .padding(5.dp)
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.umy),
+                    painter = painterResource(id = R.drawable.toko1),
                     contentDescription = "Logo",
                     modifier = Modifier
                         .fillMaxSize()
-                        .clip(CircleShape)
+
                 )
             }
         }
