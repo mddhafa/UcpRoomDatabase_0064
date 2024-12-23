@@ -45,7 +45,30 @@ import com.example.ucp_2.ui.viewmodel.barang.HomeBrgViewModel
 import com.example.ucp_2.ui.viewmodel.suplier.HomeSprUiState
 import com.example.ucp_2.ui.viewmodel.suplier.HomeSprViewModel
 import kotlinx.coroutines.launch
+@Composable
+fun HomeSprView (
+    viewModel: HomeSprViewModel = viewModel(factory = PenyediaViewModel.Factory),
+    onBack: () -> Unit = { },
+){
+    Scaffold (
+        topBar = {
+            Navbar(
+                namaUser = "List Supplier",
+                onBack = onBack,
+                showBackButton = true
+            )
+        },
 
+        ) { innerPadding ->
+        val homeSprUiState = viewModel.homeSprUiState.collectAsState()
+
+        BodyListSprView(
+            homeSprUiState = homeSprUiState.value,
+            modifier = Modifier.padding(innerPadding)
+        )
+
+    }
+}
 
 @Composable
 fun BodyListSprView(
