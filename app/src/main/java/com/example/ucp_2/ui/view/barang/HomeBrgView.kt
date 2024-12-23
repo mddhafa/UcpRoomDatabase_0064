@@ -12,10 +12,12 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Divider
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.material3.Icon
@@ -149,6 +151,7 @@ fun CardBrg(
     modifier: Modifier = Modifier,
     onDetailClick: (Int) -> Unit
 ) {
+    Spacer(modifier = Modifier.height(10.dp))
     val backgroundColor = when (brg.stok) {
         0 -> Color.Gray.copy(alpha = 0.1f)
         in 1..10 -> Color.Red.copy(alpha = 0.2f)
@@ -174,10 +177,15 @@ fun CardBrg(
                 Spacer(modifier = modifier.padding(4.dp))
                 Text(
                     text = "ID: ${brg.idBrg}",
-                    fontSize = 16.sp,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 18.sp,
                     color = MaterialTheme.colorScheme.onSurface
                 )
             }
+            Spacer(modifier = Modifier.width(8.dp))
+            Divider(color = Color.Gray, thickness = 1.dp)
+            Spacer(modifier = Modifier.width(8.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -186,10 +194,13 @@ fun CardBrg(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = brg.namaBrg,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
+
+            Spacer(modifier = Modifier.width(8.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -198,10 +209,13 @@ fun CardBrg(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = brg.deskripsi,
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 20.sp
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
+
+            Spacer(modifier = Modifier.width(8.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -210,10 +224,13 @@ fun CardBrg(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Stok: ${brg.stok}",
-                    fontWeight = FontWeight.Medium,
-                    fontSize = 16.sp
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
+
+            Spacer(modifier = Modifier.width(8.dp))
+
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
@@ -222,7 +239,8 @@ fun CardBrg(
                 Spacer(modifier = Modifier.width(8.dp))
                 Text(
                     text = "Harga: Rp${brg.harga}",
-                    fontWeight = FontWeight.Medium
+                    fontSize = 18.sp,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }
