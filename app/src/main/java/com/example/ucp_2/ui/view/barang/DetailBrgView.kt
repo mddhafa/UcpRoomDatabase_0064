@@ -38,6 +38,56 @@ import com.example.ucp_2.ui.customwidget.InputDataTopAppBar
 import com.example.ucp_2.ui.viewmodel.PenyediaViewModel
 import com.example.ucp_2.ui.viewmodel.barang.DetailBrgUiState
 import com.example.ucp_2.ui.viewmodel.barang.DetailBrgViewModel
+import com.example.ucp_2.ui.viewmodel.suplier.toBarangEntity
+
+
+@Composable
+fun ItemDetailBrg(
+    modifier: Modifier = Modifier,
+    barang: Barang
+) {
+    Card(
+        modifier = modifier.fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        ),
+        elevation = CardDefaults.elevatedCardElevation(8.dp)
+    ) {
+        Column(modifier = Modifier.padding(16.dp)) {
+            ComponentDetailBrg(judul = "Id Barang", isinya = barang.idBrg.toString())
+            Spacer(modifier = Modifier.height(12.dp))
+            ComponentDetailBrg(judul = "Nama Barang", isinya = barang.namaBrg)
+            Spacer(modifier = Modifier.height(12.dp))
+            ComponentDetailBrg(judul = "Deskripsi", isinya = barang.deskripsi)
+            Spacer(modifier = Modifier.height(12.dp))
+            ComponentDetailBrg(judul = "Harga", isinya = barang.harga)
+            Spacer(modifier = Modifier.height(12.dp))
+            ComponentDetailBrg(judul = "Stok", isinya = barang.stok.toString())
+            Spacer(modifier = Modifier.height(12.dp))
+            ComponentDetailBrg(judul = "Nama Supplier", isinya = barang.namaSuplier)
+        }
+    }
+}
+
+@Composable
+fun ComponentDetailBrg(
+    modifier: Modifier = Modifier,
+    judul: String,
+    isinya: String,
+) {
+    Column(modifier = modifier.fillMaxWidth()) {
+        Text(
+            text = judul,
+            style = MaterialTheme.typography.labelLarge.copy(fontWeight = FontWeight.Bold),
+            color = MaterialTheme.colorScheme.secondary
+        )
+        Text(
+            text = isinya,
+            style = MaterialTheme.typography.bodyLarge
+        )
+    }
+}
 
 @Composable
 private fun DeleteConfirmationDialog(
