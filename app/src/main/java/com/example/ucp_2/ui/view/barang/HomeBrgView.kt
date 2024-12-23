@@ -44,6 +44,26 @@ import com.example.ucp_2.ui.viewmodel.barang.HomeBrgUiState
 import com.example.ucp_2.ui.viewmodel.barang.HomeBrgViewModel
 import kotlinx.coroutines.launch
 
+@Composable
+fun ListBarang(
+    listBrg: List<Barang>,
+    modifier: Modifier = Modifier,
+    onDetailClick: (Int) -> Unit
+) {
+    LazyColumn(
+        modifier = modifier
+    ) {
+        items(
+            items = listBrg,
+            itemContent = { brg ->
+                CardBrg(
+                    brg = brg,
+                    onDetailClick = onDetailClick
+                )
+            }
+        )
+    }
+}
 
 @Composable
 fun CardBrg(
