@@ -2,24 +2,14 @@ package com.example.ucp_2.ui.customwidget
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.wrapContentWidth
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material3.IconButton
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -36,56 +26,72 @@ import com.example.ucp_2.R
 @Preview(showBackground = true)
 @Composable
 fun NavbarPreview() {
-    Navbar(namaUser = "John Doe", onBack = {}, showBackButton = true)
-
+    Navbar(namaUser = "Muhammad Dhafa", onBack = {}, showBackButton = true)
 }
+
 @Composable
 fun Navbar(
-    namaUser:String,
+    namaUser: String,
     onBack: () -> Unit,
     showBackButton: Boolean = true
-
-){
-    Box(Modifier.fillMaxWidth().size(150.dp)
-        .clip(RoundedCornerShape(bottomEnd = 80.dp))
-        .background(color = Color(red = 0, green = 191, blue = 255))){
-        Row(modifier = Modifier
-            .padding(top = 10.dp)
-        ){
-
-            Column(modifier = Modifier.padding(5.dp)) {
-                Icon(
-                    Icons.Filled.Menu, contentDescription = "",
-                    tint = Color.White
-                )
-                Text("Hallo,",
+) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .wrapContentHeight()
+            .clip(RoundedCornerShape(bottomEnd = 80.dp))
+            .background(color = Color(0xFF00BFFF))
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 16.dp, vertical = 20.dp)
+        ) {
+            Column(
+                modifier = Modifier
+                    .align(Alignment.CenterVertically)
+                    .padding(end = 20.dp)
+            ) {
+                Text(
+                    text = "Hallo,",
                     color = Color.White,
                     fontWeight = FontWeight.Bold,
-                    fontSize = 30.sp)
-                Text(namaUser,
+                    fontSize = 24.sp
+                )
+                Text(
+                    text = namaUser,
                     color = Color.White,
                     fontStyle = FontStyle.Italic,
-                    fontSize = 15.sp)
-                    if (showBackButton) {
-                            IconButton(
-                                onClick = onBack,
-                            ) {
-                                Icon(
-                                    imageVector = Icons.Filled.ArrowBack,
-                                    contentDescription = "Kembali",
-                                    tint = Color.White
-                                )
-
-                            }
+                    fontSize = 16.sp
+                )
+                Spacer(modifier = Modifier.height(10.dp))
+                if (showBackButton) {
+                    IconButton(
+                        onClick = onBack,
+                    ) {
+                        Icon(
+                            imageVector = Icons.Filled.ArrowBack,
+                            contentDescription = "Kembali",
+                            tint = Color.White
+                        )
                     }
-                Spacer(modifier = Modifier.weight(2f))
+                }
             }
+
             Spacer(modifier = Modifier.weight(1f))
-            Box(modifier = Modifier.size(100.dp).padding(end = 10.dp)){
+
+            Box(
+                modifier = Modifier
+                    .size(90.dp)
+                    .clip(CircleShape)
+                    .background(Color.White)
+                    .padding(5.dp)
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.umy),
-                    contentDescription = "",
-                    Modifier.size(100.dp).clip(shape = CircleShape)
+                    contentDescription = "Logo",
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .clip(CircleShape)
                 )
             }
         }
