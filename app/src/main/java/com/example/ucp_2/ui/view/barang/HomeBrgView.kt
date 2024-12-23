@@ -45,6 +45,59 @@ import com.example.ucp_2.ui.viewmodel.barang.HomeBrgViewModel
 import kotlinx.coroutines.launch
 
 @Composable
+fun BodyListBrgView(
+    homeBrgUiState: HomeBrgUiState,
+    onDetailClick: (Int) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    val coroutineScope = rememberCoroutineScope()
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    when {
+        homeBrgUiState.isLoading -> {
+            Box(
+                modifier = modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+
+        homeBrgUiState.isError -> {
+            LaunchedEffect(homeBrgUiState.errorMessage) {
+                homeBrgUiState.errorMessage?.let { message ->
+                    coroutineScope.launch {
+                        snackbarHostState.showSnackbar(message)
+                    }
+                }
+            }
+        }
+
+        homeBrgUiState.listBrg.isEmpty() -> {
+            Box(
+                modifier = modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Text(
+                    text = "Tidak ada data Barang.",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+
+        else -> {
+            ListBarang(
+                listBrg = homeBrgUiState.listBrg,
+                onDetailClick = onDetailClick,
+                modifier = modifier
+            )
+        }
+    }
+}
+
+@Composable
 fun ListBarang(
     listBrg: List<Barang>,
     modifier: Modifier = Modifier,
