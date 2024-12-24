@@ -9,7 +9,7 @@ list brg dan detail brg
 <img width="221" alt="validasi data" src="https://github.com/user-attachments/assets/e55cd085-c2bc-4931-b2b8-112fa8978395" />
 
 update 
-<img width="221" alt="update" src="https://github.com/user-attachments/assets/72729e24-5759-4dba-b526-9e5cc0645649" />
+<img width="221" alt="update" src="https://github.com/user-attachments/assets/6ff6d5e1-4b14-4664-91d2-5c26bdbb0773" />
 
 hapus data dan validasinya
 <img width="221" alt="validasi data" src="https://github.com/user-attachments/assets/be5dc4d7-59b7-4123-908c-ed884cfbf438" />
@@ -20,3 +20,6 @@ halaman input spr dan validasinya
 
 list spr
 <img width="221" alt="validasi data" src="https://github.com/user-attachments/assets/3dce6ef4-3fbf-404a-9d14-5531f84c8ef8" />
+
+Link Video Presentasi
+https://drive.google.com/file/d/11tlCq5Rd2nPfpI3siOQxDwTSA1LKGnvR/view?usp=sharing 
